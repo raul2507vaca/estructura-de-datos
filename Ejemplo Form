@@ -1,7 +1,4 @@
-Form1.h
-
-
-#pragma once
+#include "Form2.h"
 
 namespace ejemplologin {
 
@@ -99,6 +96,7 @@ namespace ejemplologin {
 			// 
 			this->txt_contrasena1->Location = System::Drawing::Point(118, 89);
 			this->txt_contrasena1->Name = L"txt_contrasena1";
+			this->txt_contrasena1->PasswordChar = '*';
 			this->txt_contrasena1->Size = System::Drawing::Size(100, 20);
 			this->txt_contrasena1->TabIndex = 3;
 			// 
@@ -110,9 +108,7 @@ namespace ejemplologin {
 			this->button1->TabIndex = 4;
 			this->button1->Text = L"Entrar";
 			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += 
-      
-      gcnew System::EventHandler(this, &Form1::button1_Click);
+			this->button1->Click += gcnew System::EventHandler(this, &Form1::button1_Click);
 			// 
 			// Form1
 			// 
@@ -138,28 +134,15 @@ namespace ejemplologin {
 				 {
 					 MessageBox::Show("Contraseña o usuario Incorrecto","Error de autentificacion",MessageBoxButtons::OK,MessageBoxIcon::Error);
 				 }
+				 else
+				 {
+				 Form2^x = gcnew Form2();
+				 this->Hide();
+				 x->ShowDialog();
+				 this->Close();
+				 
+				 }
 
 			 }
 };
-}
-
-EjemploLogin.cpp
-
-// ejemplologin.cpp : main project file.
-
-#include "stdafx.h"
-#include "Form1.h"
-
-using namespace ejemplologin;
-
-[STAThreadAttribute]
-int main(array<System::String ^> ^args)
-{
-	// Enabling Windows XP visual effects before any controls are created
-	Application::EnableVisualStyles();
-	Application::SetCompatibleTextRenderingDefault(false); 
-
-	// Create the main window and run it
-	Application::Run(gcnew Form1());
-	return 0;
 }
